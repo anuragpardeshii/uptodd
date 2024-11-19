@@ -24,7 +24,7 @@ export default function Popup({ closePopup }) {
 
     try {
       const response = await axios.post(
-        "https://ten-uptodd.onrender.com/api/book-demo",
+        "https://uptodd.onrender.com/api/book-demo",
         {
           fullName: data.fullName,
           email: data.email,
@@ -49,7 +49,6 @@ export default function Popup({ closePopup }) {
   };
   return (
     <div className='popup-container'>
-      <div className='popup-overlay'></div>
       <div className='lead-form-container'>
         <div className='lead-form-head'>
         <div className="clone-btn-container">
@@ -117,7 +116,7 @@ export default function Popup({ closePopup }) {
             )}
           </div>
           <div>
-            <h4>Your Child's Date of Birth</h4>
+            <h5>Your Child's Date of Birth</h5>
             <div className='form-baby-age-group'>
               <input
                 type='radio'
