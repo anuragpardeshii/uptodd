@@ -4,8 +4,8 @@ import path from "path"
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "mounikavemulapalli289@gmail.com", // Replace with your email
-    pass: "fsdi uykz goxm zglj", // Replace with your email password (use an app password if 2FA is enabled)
+    user: "tech@entrepreneurshipnetwork.net", // Replace with your email
+    pass: "ulzo ueut cueu vlpv", // Replace with your email password (use an app password if 2FA is enabled)
   },
 })
 
@@ -19,8 +19,8 @@ export const sendEmail = async (
   resume
 ) => {
   const mailOptions = {
-    from: "mounikavemulapalli289@gmail.com",
-    to: "mounikavemulapalli289@gmail.com", // Replace with your email
+    from: "tech@entrepreneurshipnetwork.net",
+    to: "tech@entrepreneurshipnetwork.net", // Replace with your email
     subject: "New Job Application",
     text: `New job application received from ${fullname}.\n\nFull Name: ${fullname}\nEmail: ${email}\nPhone: ${phone}\nGender: ${gender}\nJob Department: ${jobrole}`,
     attachments: [
