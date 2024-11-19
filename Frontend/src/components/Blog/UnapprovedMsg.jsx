@@ -7,7 +7,7 @@ const UnapprovedMsg = () => {
     <div className='unapproved-message-wrapper'>
       <div className='unapproved-message'>
         <p>Sorry, replies to unapproved comments are not allowed</p>
-        <Link to='/blog'>«« Back</Link>
+        <Link to='/blog'>« Back</Link>
       </div>
     </div>
   );
