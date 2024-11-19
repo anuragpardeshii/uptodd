@@ -17,8 +17,8 @@ const transporter = nodemailer.createTransport({
   secure: false,
 
   auth: {
-    user: "mounikavemulapalli289@gmail.com", // Replace with your email
-    pass: "fsdi uykz goxm zglj",
+    user: "tech@entrepreneurshipnetwork.net", // Replace with your email
+    pass: "ulzo ueut cueu vlpv",
   },
 });
 
@@ -37,7 +37,7 @@ router.post("/book-demo", async (req, res) => {
 
     // Send email notification
     const mailOptions = {
-      from: "mounikavemulapalli289@gmail.com",
+      from: "tech@entrepreneurshipnetwork.net",
       to: email,
       subject: "Demo Session Booking Confirmation",
       html: `<div style={{display:flex;flex-direction:column}}> <h1>Dear ${fullName}, your demo session has been successfully booked. Our team will contact you soon!</h1> <br /><h3>This is what you have filled:</h3> <ul> <li>FullName:${fullName}</li><li>Email:${email}</li> <li>Mobile Code:${mobileCode}</li><li>Mobile:${mobile} <li>Child Age: ${babyAge}</li></ul></div> `,
