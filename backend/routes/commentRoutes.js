@@ -106,25 +106,4 @@ try {
 }
 })
 
-// router.delete("/comments/:blogTitle/:commentId/reply/:replyId", async (req, res) => {
-//     const { commentId, replyId } = req.params;
-
-//     try {
-//         const updatedComment = await Comment.findByIdAndUpdate(
-//             commentId,
-//             { $pull: { replies: { _id: replyId } } }, // Remove the reply by ID
-//             { new: true } // Return the updated document
-//         );
-
-//         if (!updatedComment) {
-//             return res.status(404).json({ message: "Comment or reply not found" });
-//         }
-
-//         res.status(200).json({ message: "Reply deleted successfully", comment: updatedComment });
-//     } catch (error) {
-//         console.error("Error deleting reply:", error);
-//         res.status(500).json({ message: "Server error while deleting reply" });
-//     }
-// });
-
 export default router;
