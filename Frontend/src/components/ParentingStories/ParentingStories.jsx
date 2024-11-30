@@ -39,7 +39,9 @@ function ParentingStories() {
             </div>
 
             <div className="p-content-section">
-              <h1 className="p-section-title">Why Share Your Parenting Story?</h1>
+              <h1 className="p-section-title">
+                Why Share Your Parenting Story?
+              </h1>
               <p className="p-section-paragraph">
                 Your experiences matter, and by sharing them, you contribute to
                 a collective narrative that resonates with parents worldwide by
@@ -397,59 +399,41 @@ function ParentingStories() {
         </main>
       </div>
 
-
-
-
-      <div style={{display: "flex", justifyContent: "space-around", backgroundColor: "#e5e7eb"}} >
-          <a
-            href="#prev"
-            style={{textDecoration: "none", color: "red", fontSize: "1.5rem"}}
-            onClick={(e) => {
-              e.preventDefault();
-              changeDiv("prev");
-            }}
-          >
-            Previous
-          </a>{" "}
-        
-          <a
-            href="#next"
-            style={{textDecoration: "none", color: "red", fontSize: "1.5rem"}}
-            onClick={(e) => {
-              e.preventDefault();
-              changeDiv("next");
-            }}
-          >
-            Next
-          </a>
-        
-        
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          margin: "auto",
+          maxWidth: "1100px",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <a
+          href="#prev"
+          style={{ textDecoration: "none", color: "red", fontSize: "1.3rem" }}
+          onClick={(e) => {
+            e.preventDefault();
+            changeDiv("prev");
+          }}
+        >
+          ← Previous
+        </a>{" "}
+        <a
+          href="#next"
+          style={{ textDecoration: "none", color: "red", fontSize: "1.3rem" }}
+          onClick={(e) => {
+            e.preventDefault();
+            changeDiv("next");
+          }}
+        >
+          Next →
+        </a>
       </div>
 
-      <main className="p-main-container">
-        <div className="p-content-wrapper">
-          <div className="p-content-section">
-            <h1 className="p-section-title">
-              2 thoughts on “Parenting Stories – Share Your Parenting Journey:
-              Click, Connect, Inspire!”
-            </h1>
-            <h1 className="p-section-title">Comments:</h1>
-          </div>
-        </div>
-      </main>
-
-
-      <main className="p-main-container">
-        <div className="p-content-wrapper">
-          <div className="p-content-section">
-          <CommentForm/>
-          </div>
-        </div>
-      </main>
+      <CommentForm />
 
       <BlogFooter />
     </div>
-
   );
 }
 
