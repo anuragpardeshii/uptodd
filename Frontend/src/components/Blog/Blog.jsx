@@ -301,7 +301,7 @@ const handleDeleteReply = async (commentId, replyId) => {
   setComments(updatedComments);  // Update the state immediately
 
   try {
-    const response = await axios.delete(`https://uptodd.onrender.com/api/comments/${encodeURIComponent(title)}/${commentId}/reply/${replyId}`);
+    const response = await axios.delete(`https://uptodd.onrender.com/api/comments/${encodeURIComponent(title)}/${commentId}`);
     if (response.status !== 200) {
       // If deletion fails, revert the optimistic update
       setComments(comments);  // Revert back to the original state
@@ -419,8 +419,6 @@ const handleDeleteReply = async (commentId, replyId) => {
               latestComment.replies.map((reply,index)=>(
                   <div key={index} className="comment-header">
           <img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=170667a&w=0&k=20&c=EpwfsVjTx8cqJJZzBMp__1qJ_7qSfsMoWRGnVGuS8Ew=" alt="Avatar" className="avatar" />
-
- 
                     <div className="comment-name">
 
                     <strong>{reply.author}</strong>
@@ -437,28 +435,18 @@ const handleDeleteReply = async (commentId, replyId) => {
                 ))
               }
 
-
-
             </div>
           )}
 
           {/* Reply link and form  */}
           <a href="#reply" className="reply-link" onClick={()=>setReplyingTo(latestComment._id)}>Reply</a>
           {replyingTo === latestComment._id  && (
-
-
             <form onSubmit={(e)=>handleReplySubmit(e,latestComment._id)} >
               <p className="reply-header">
                 <strong>Reply to {latestComment.author}</strong>
                 <button type="button" onClick={()=>setReplyingTo(null)} className="cancel-reply">Cancel</button>
               </p>
-
-
               <p>Your email address will not be published.Required fields are marked *</p>
-
-              
-              
-
 <fieldset>
             <textarea placeholder="Type here..." name="" id="" rows='8' style={{ width: '100%' }} value={replyText} onChange={(e)=>setReplyText(e.target.value)} required></textarea>
           </fieldset>
@@ -482,22 +470,12 @@ const handleDeleteReply = async (commentId, replyId) => {
 
             </form>
           )}
-
-
           <p className="moderation-notice">Your comment awaiting moderation.</p>
-
         </div>
-
       )}
-
-
-
-
         <h3>Leave a Comment</h3>
         <form onSubmit={handleSubmit}>
           <p>Your email address will not be published. Required fields are marked *</p>
-
-
           <fieldset>
             <textarea placeholder="Type here..." name="" id="" rows='8' style={{ width: '100%' }} value={newComment.text} onChange={(e)=>setNewComment({...newComment,text:e.target.value})}  required></textarea>
           </fieldset>

@@ -283,7 +283,7 @@ export default function CommentForm() {
       const response = await axios.delete(
         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
           title
-        )}/${commentId}/reply/${replyId}`
+        )}/${commentId}`
       );
       if (response.status !== 200) {
         // If deletion fails, revert the optimistic update
