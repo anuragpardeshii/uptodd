@@ -6,6 +6,7 @@ import articles from "../../assets/data/articles.json";
 import axios from "axios";
 
 export default function CommentForm() {
+
   const [comments, setComments] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [newComment, setNewComment] = useState({
@@ -74,6 +75,25 @@ export default function CommentForm() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [title]);
+
+  // useEffect(() => {
+  //   // Fetch comments for the current article
+  //   const fetchComments = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(title)}`
+  //       );
+  //       setComments(Array.isArray(response.data) ? response.data : []);
+  //     } catch (error) {
+  //       console.error("Error fetching comments:", error);
+  //       setComments([]);
+  //     }
+  //   };
+  //   if (title) {
+  //     fetchComments();
+  //   }
+  // }, [title]); // Ensure this effect is triggered whenever the article title changes
+  
 
   useEffect(() => {
     const savedAuthor = localStorage.getItem("commentAuthor");
@@ -301,6 +321,10 @@ export default function CommentForm() {
       {/* Show comments here */}
 
       <div id="comments">
+
+        {/* Navigation buttons */}
+
+
         {/* <h3>{comments.length} thoughts on "{decodedTitle}"</h3> */}
         <h3>
           {latestComment ? `1 thought on "${decodedTitle}"` : "No comments yet"}{" "}
@@ -557,6 +581,7 @@ export default function CommentForm() {
           <button type="submit">
             {isSubmitted ? <span>Loading...</span> : "Post Comment » "}
           </button>
+          
         </form>
       </div>
     </>
