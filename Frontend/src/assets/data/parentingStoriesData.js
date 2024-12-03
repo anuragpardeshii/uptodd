@@ -13,6 +13,7 @@ export const parentingStoriesData = [
       {
         heading: "How to Share Your Story:",
         text: "Click here to share your parenting story in a quick and easy 5-minute process. No hassles – just your authentic narrative.",
+       
       },
       {
         heading: "What Happens Next:",
@@ -321,6 +322,10 @@ export const parentingStoriesData = [
       },
       {
         text: "Want your personalised program? Book Demo",
+        
+      },
+      {
+        video: "https://youtu.be/CNLYum2LT0A?si=AYA7nhPbHSW6dsug",
       },
     ],
   },

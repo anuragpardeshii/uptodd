@@ -1329,6 +1329,15 @@ function ParentingStories() {
                       ))}
                     </ul>
                   )}
+
+                    {section.video && (
+                    <div className="p-video-container">
+                      <iframe width="760" height="415" src="https://www.youtube.com/embed/CNLYum2LT0A?si=MIHwW8OX17-c_yOE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                      <p className="p-video-caption">
+                        Explore the video to understand {section.heading}.
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
