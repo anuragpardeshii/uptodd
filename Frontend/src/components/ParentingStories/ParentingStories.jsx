@@ -515,9 +515,6 @@
 
 // export default ParentingStories;
 
-
-
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { parentingStoriesData } from "../../assets/data/parentingStoriesData"; // Import the data
@@ -526,7 +523,11 @@ import "./ParentingStories.css";
 function ParentingStories() {
   const [currentDiv, setCurrentDiv] = useState(1);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState({ author: "", email: "", text: "" });
+  const [newComment, setNewComment] = useState({
+    author: "",
+    email: "",
+    text: "",
+  });
   const totalDivs = parentingStoriesData.length;
 
   // Fetch comments for the current story
@@ -535,7 +536,9 @@ function ParentingStories() {
       try {
         const currentStory = parentingStoriesData[currentDiv - 1];
         const response = await axios.get(
-          `https://uptodd.onrender.com/api/comments/${encodeURIComponent(currentStory.title)}`
+          `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+            currentStory.title
+          )}`
         );
         setComments(response.data || []);
       } catch (error) {
@@ -559,7 +562,9 @@ function ParentingStories() {
     const currentStory = parentingStoriesData[currentDiv - 1];
     try {
       const response = await axios.post(
-        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(currentStory.title)}`,
+        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+          currentStory.title
+        )}`,
         newComment
       );
       setComments([...comments, response.data]);
@@ -580,12 +585,18 @@ function ParentingStories() {
             <div className="p-content-wrapper">
               <div className="p-content-section">
                 <h1 className="p-section-title">{story.title}</h1>
-                <img src={story.image} alt="Parenting Story" className="p-story-image" />
+                <img
+                  src={story.image}
+                  alt="Parenting Story"
+                  className="p-story-image"
+                />
               </div>
               {story.content.map((section, i) => (
                 <div key={i} className="p-content-section">
                   <h2 className="p-section-title">{section.heading}</h2>
-                  {section.text && <p className="p-section-paragraph">{section.text}</p>}
+                  {section.text && (
+                    <p className="p-section-paragraph">{section.text}</p>
+                  )}
                   {section.points && (
                     <ul>
                       {section.points.map((point, j) => (
@@ -611,55 +622,63 @@ function ParentingStories() {
             </div>
           </main>
 
-               {/* Navigation Buttons */}
-      <div className="p-navigation">
-        <button onClick={() => changeDiv("prev")}>Previous</button>
-        <button onClick={() => changeDiv("next")}>Next</button>
-      </div>
-          {/* Comments Section */}
-          <div className="p-comments">
-            <h3>{comments.length > 0 ? `Comments` : "No comments yet"}</h3>
-            {comments.map((comment, index) => (
-              <div key={index} className="comment">
-                <p><strong>{comment.author}</strong>: {comment.text}</p>
-              </div>
-            ))}
-            <form onSubmit={handleCommentSubmit}>
-              <input
-                type="text"
-                placeholder="Your name"
-                value={newComment.author}
-                onChange={(e) => setNewComment({ ...newComment, author: e.target.value })}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Your email"
-                value={newComment.email}
-                onChange={(e) => setNewComment({ ...newComment, email: e.target.value })}
-                required
-              />
-              <textarea
-                placeholder="Your comment"
-                value={newComment.text}
-                onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
-                required
-              />
-              <button type="submit">Add Comment</button>
-            </form>
+          {/* Navigation Buttons */}
+          <div className="p-navigation">
+            <button onClick={() => changeDiv("prev")}>Previous</button>
+            <button onClick={() => changeDiv("next")}>Next</button>
+          </div>
+
+          <div className="comments-part">
+            {/* Comments Section */}
+            <div className="p-comments">
+              <h3>{comments.length > 0 ? `Comments` : "No comments yet"}</h3>
+              {comments.map((comment, index) => (
+                <div key={index} className="comment">
+                  <p>
+                    <strong>{comment.author}</strong>: {comment.text}
+                  </p>
+                </div>
+              ))}
+              <form onSubmit={handleCommentSubmit}>
+                <div className="p-comments-inputBoxs">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={newComment.author}
+                    onChange={(e) =>
+                      setNewComment({ ...newComment, author: e.target.value })
+                    }
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    value={newComment.email}
+                    onChange={(e) =>
+                      setNewComment({ ...newComment, email: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <textarea
+                  placeholder="Your comment"
+                  value={newComment.text}
+                  onChange={(e) =>
+                    setNewComment({ ...newComment, text: e.target.value })
+                  }
+                  required
+                />
+                <button type="submit">Add Comment</button>
+              </form>
+            </div>
           </div>
         </div>
       ))}
-
- 
     </div>
   );
 }
 
 export default ParentingStories;
-
-
-
 
 // import React, { useState } from "react";
 // import "./ParentingStories.css";
@@ -693,7 +712,7 @@ export default ParentingStories;
 //       fetchComments();
 //     }
 //   }, [title]); // Ensure this effect is triggered whenever the article title changes
-  
+
 //   return (
 //     <div className="p-">
 //       <div className={`p-content ${currentDiv === 1 ? "active" : ""}`}>
@@ -1111,7 +1130,6 @@ export default ParentingStories;
 //         </a>
 //       </div>
 
-
 //       <div>
 //         {prevIndex && (
 //           <Link to={`/blog/${encodeURIComponent(prevIndex)}`}>Previous</Link>
@@ -1120,7 +1138,6 @@ export default ParentingStories;
 //           <Link to={`/blog/${encodeURIComponent(nextIndex)}`}>Next</Link>
 //         )}
 //       </div>
-
 
 //       <CommentForm />
 
