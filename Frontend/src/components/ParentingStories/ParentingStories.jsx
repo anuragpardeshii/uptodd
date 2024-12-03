@@ -515,171 +515,6 @@
 
 // export default ParentingStories;
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { parentingStoriesData } from "../../assets/data/parentingStoriesData"; // Import the data
-import "./ParentingStories.css";
-
-function ParentingStories() {
-  const [currentDiv, setCurrentDiv] = useState(1);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState({
-    author: "",
-    email: "",
-    text: "",
-  });
-  const totalDivs = parentingStoriesData.length;
-
-  // Fetch comments for the current story
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const currentStory = parentingStoriesData[currentDiv - 1];
-        const response = await axios.get(
-          `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
-            currentStory.title
-          )}`
-        );
-        setComments(response.data || []);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-        setComments([]);
-      }
-    };
-    fetchComments();
-  }, [currentDiv]);
-
-  const changeDiv = (direction) => {
-    if (direction === "next") {
-      setCurrentDiv((currentDiv % totalDivs) + 1);
-    } else if (direction === "prev") {
-      setCurrentDiv(((currentDiv - 2 + totalDivs) % totalDivs) + 1);
-    }
-  };
-
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    const currentStory = parentingStoriesData[currentDiv - 1];
-    try {
-      const response = await axios.post(
-        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
-          currentStory.title
-        )}`,
-        newComment
-      );
-      setComments([...comments, response.data]);
-      setNewComment({ author: "", email: "", text: "" });
-    } catch (error) {
-      console.error("Error submitting comment:", error);
-    }
-  };
-
-  return (
-    <div className="p-container">
-      {parentingStoriesData.map((story, index) => (
-        <div
-          key={story.id}
-          className={`p-content ${currentDiv === index + 1 ? "active" : ""}`}
-        >
-          <main className="p-main-container">
-            <div className="p-content-wrapper">
-              <div className="p-content-section">
-                <h1 className="p-section-title">{story.title}</h1>
-                <img
-                  src={story.image}
-                  alt="Parenting Story"
-                  className="p-story-image"
-                />
-              </div>
-              {story.content.map((section, i) => (
-                <div key={i} className="p-content-section">
-                  <h2 className="p-section-title">{section.heading}</h2>
-                  {section.text && (
-                    <p className="p-section-paragraph">{section.text}</p>
-                  )}
-                  {section.points && (
-                    <ul>
-                      {section.points.map((point, j) => (
-                        <li key={j}>
-                          {typeof point === "string" ? (
-                            <p>{point}</p>
-                          ) : (
-                            <>
-                              <strong>{point.title}</strong>
-                              <ul>
-                                {point.subPoints.map((subPoint, k) => (
-                                  <li key={k}>{subPoint}</li>
-                                ))}
-                              </ul>
-                            </>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </main>
-
-          {/* Navigation Buttons */}
-          <div className="p-navigation">
-            <button onClick={() => changeDiv("prev")}>Previous</button>
-            <button onClick={() => changeDiv("next")}>Next</button>
-          </div>
-
-          <div className="comments-part">
-            {/* Comments Section */}
-            <div className="p-comments">
-              <h3>{comments.length > 0 ? `Comments` : "No comments yet"}</h3>
-              {comments.map((comment, index) => (
-                <div key={index} className="comment">
-                  <p>
-                    <strong>{comment.author}</strong>: {comment.text}
-                  </p>
-                </div>
-              ))}
-              <form onSubmit={handleCommentSubmit}>
-                <div className="p-comments-inputBoxs">
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    value={newComment.author}
-                    onChange={(e) =>
-                      setNewComment({ ...newComment, author: e.target.value })
-                    }
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    value={newComment.email}
-                    onChange={(e) =>
-                      setNewComment({ ...newComment, email: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <textarea
-                  placeholder="Your comment"
-                  value={newComment.text}
-                  onChange={(e) =>
-                    setNewComment({ ...newComment, text: e.target.value })
-                  }
-                  required
-                />
-                <button type="submit">Add Comment</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default ParentingStories;
-
 // import React, { useState } from "react";
 // import "./ParentingStories.css";
 // import CommentForm from "./CommentForm";
@@ -1147,3 +982,454 @@ export default ParentingStories;
 // }
 
 // export default ParentingStories;
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { parentingStoriesData } from "../../assets/data/parentingStoriesData"; // Import the data
+// import "./ParentingStories.css";
+
+// function ParentingStories() {
+//   const [currentDiv, setCurrentDiv] = useState(1);
+//   const [comments, setComments] = useState([]);
+//   const [newComment, setNewComment] = useState({
+//     author: "",
+//     email: "",
+//     text: "",
+//   });
+//   const totalDivs = parentingStoriesData.length;
+
+//   // Fetch comments for the current story
+//   useEffect(() => {
+//     const fetchComments = async () => {
+//       try {
+//         const currentStory = parentingStoriesData[currentDiv - 1];
+//         const response = await axios.get(
+//           `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+//             currentStory.title
+//           )}`
+//         );
+//         setComments(response.data || []);
+//       } catch (error) {
+//         console.error("Error fetching comments:", error);
+//         setComments([]);
+//       }
+//     };
+//     fetchComments();
+//   }, [currentDiv]);
+
+//   const changeDiv = (direction) => {
+//     if (direction === "next") {
+//       setCurrentDiv((currentDiv % totalDivs) + 1);
+//     } else if (direction === "prev") {
+//       setCurrentDiv(((currentDiv - 2 + totalDivs) % totalDivs) + 1);
+//     }
+//   };
+
+//   const handleCommentSubmit = async (e) => {
+//     e.preventDefault();
+//     const currentStory = parentingStoriesData[currentDiv - 1];
+//     try {
+//       const response = await axios.post(
+//         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+//           currentStory.title
+//         )}`,
+//         newComment
+//       );
+//       setComments([...comments, response.data]);
+//       setNewComment({ author: "", email: "", text: "" });
+//     } catch (error) {
+//       console.error("Error submitting comment:", error);
+//     }
+//   };
+
+//   return (
+//     <div className="p-container">
+//       {parentingStoriesData.map((story, index) => (
+//         <div
+//           key={story.id}
+//           className={`p-content ${currentDiv === index + 1 ? "active" : ""}`}
+//         >
+//           <main className="p-main-container">
+//             <div className="p-content-wrapper">
+//               <div className="p-content-section">
+//                 <h1 className="p-section-title">{story.title}</h1>
+//                 <img
+//                   src={story.image}
+//                   alt="Parenting Story"
+//                   className="p-story-image"
+//                 />
+//               </div>
+//               {story.content.map((section, i) => (
+//                 <div key={i} className="p-content-section">
+//                   <h2 className="p-section-title">{section.heading}</h2>
+//                   {section.text && (
+//                     <p className="p-section-paragraph">{section.text}</p>
+//                   )}
+//                   {section.points && (
+//                     <ul>
+//                       {section.points.map((point, j) => (
+//                         <li key={j}>
+//                           {typeof point === "string" ? (
+//                             <p>{point}</p>
+//                           ) : (
+//                             <>
+//                               <strong>{point.title}</strong>
+//                               <ul>
+//                                 {point.subPoints.map((subPoint, k) => (
+//                                   <li key={k}>{subPoint}</li>
+//                                 ))}
+//                               </ul>
+//                             </>
+//                           )}
+//                         </li>
+//                       ))}
+//                     </ul>
+//                   )}
+//                 </div>
+//               ))}
+//             </div>
+//           </main>
+
+//           {/* Navigation Buttons */}
+//           <div className="p-navigation">
+//             <button onClick={() => changeDiv("prev")}>Previous</button>
+//             <button onClick={() => changeDiv("next")}>Next</button>
+//           </div>
+
+//           <div className="comments-part">
+//             {/* Comments Section */}
+//             <div className="p-comments">
+//               <h3>{comments.length > 0 ? `Comments` : "No comments yet"}</h3>
+//               {comments.map((comment, index) => (
+//                 <div key={index} className="comment">
+//                   <p>
+//                     <strong>{comment.author}</strong>: {comment.text}
+//                   </p>
+//                 </div>
+//               ))}
+//               <form onSubmit={handleCommentSubmit}>
+//                 <div className="p-comments-inputBoxs">
+//                   <input
+//                     type="text"
+//                     placeholder="Your name"
+//                     value={newComment.author}
+//                     onChange={(e) =>
+//                       setNewComment({ ...newComment, author: e.target.value })
+//                     }
+//                     required
+//                   />
+//                   <input
+//                     type="email"
+//                     placeholder="Your email"
+//                     value={newComment.email}
+//                     onChange={(e) =>
+//                       setNewComment({ ...newComment, email: e.target.value })
+//                     }
+//                     required
+//                   />
+//                 </div>
+//                 <textarea
+//                   placeholder="Your comment"
+//                   value={newComment.text}
+//                   onChange={(e) =>
+//                     setNewComment({ ...newComment, text: e.target.value })
+//                   }
+//                   required
+//                 />
+//                 <button type="submit">Add Comment</button>
+//               </form>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
+
+// export default ParentingStories;
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { parentingStoriesData } from "../../assets/data/parentingStoriesData";
+import "./ParentingStories.css";
+
+function ParentingStories() {
+  const [currentDiv, setCurrentDiv] = useState(1);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState({
+    author: "",
+    email: "",
+    text: "",
+  });
+  const [reply, setReply] = useState({ parentId: null, text: "" });
+  const totalDivs = parentingStoriesData.length;
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const currentStory = parentingStoriesData[currentDiv - 1];
+        const response = await axios.get(
+          `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+            currentStory.title
+          )}`
+        );
+
+        // Ensure replies are initialized for all comments
+        const commentsWithReplies = response.data.map((comment) => ({
+          ...comment,
+          replies: comment.replies || [],
+        }));
+        setComments(commentsWithReplies);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        setComments([]);
+      }
+    };
+
+    fetchComments();
+  }, [currentDiv]);
+
+  const changeDiv = (direction) => {
+    if (direction === "next") {
+      setCurrentDiv((currentDiv % totalDivs) + 1);
+    } else if (direction === "prev") {
+      setCurrentDiv(((currentDiv - 2 + totalDivs) % totalDivs) + 1);
+    }
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    const currentStory = parentingStoriesData[currentDiv - 1];
+    try {
+      const response = await axios.post(
+        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+          currentStory.title
+        )}`,
+        newComment
+      );
+      setComments([...comments, { ...response.data, replies: [] }]);
+      setNewComment({ author: "", email: "", text: "" });
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+  };
+
+  const handleReplySubmit = async (parentId, e) => {
+    e.preventDefault();
+
+    if (!reply.text.trim()) {
+      console.error("Reply text cannot be empty");
+      return;
+    }
+
+    const currentStory = parentingStoriesData[currentDiv - 1];
+    try {
+      const response = await axios.post(
+        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+          currentStory.title
+        )}/reply`,
+        { parentId, text: reply.text }
+      );
+
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === parentId
+            ? {
+                ...comment,
+                replies: [...comment.replies, response.data],
+              }
+            : comment
+        )
+      );
+
+      setReply({ parentId: null, text: "" });
+    } catch (error) {
+      console.error("Error submitting reply:", error);
+    }
+  };
+
+  const handleDeleteComment = async (id) => {
+    const currentStory = parentingStoriesData[currentDiv - 1];
+    try {
+      await axios.delete(
+        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+          currentStory.title
+        )}/${id}`
+      );
+      setComments(comments.filter((comment) => comment.id !== id));
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
+
+  const handleDeleteReply = async (parentId, replyId) => {
+    const currentStory = parentingStoriesData[currentDiv - 1];
+    try {
+      await axios.delete(
+        `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+          currentStory.title
+        )}/${parentId}/reply/${replyId}`
+      );
+      setComments(
+        comments.map((comment) =>
+          comment.id === parentId
+            ? {
+                ...comment,
+                replies: comment.replies.filter(
+                  (reply) => reply.id !== replyId
+                ),
+              }
+            : comment
+        )
+      );
+    } catch (error) {
+      console.error("Error deleting reply:", error);
+    }
+  };
+
+  return (
+    <div className='p-container'>
+      {parentingStoriesData.map((story, index) => (
+        <div
+          key={story.id}
+          className={`p-content ${currentDiv === index + 1 ? "active" : ""}`}
+        >
+          <main className='p-main-container'>
+            <div className='p-content-wrapper'>
+              <div className='p-content-section'>
+                <h1 className='p-section-title'>{story.title}</h1>
+                <img
+                  src={story.image}
+                  alt='Parenting Story'
+                  className='p-story-image'
+                />
+              </div>
+              {story.content.map((section, i) => (
+                <div key={i} className='p-content-section'>
+                  <h2 className='p-section-title'>{section.heading}</h2>
+                  {section.text && (
+                    <p className='p-section-paragraph'>{section.text}</p>
+                  )}
+                  {section.points && (
+                    <ul>
+                      {section.points.map((point, j) => (
+                        <li key={j}>
+                          {typeof point === "string" ? (
+                            <p>{point}</p>
+                          ) : (
+                            <>
+                              <strong>{point.title}</strong>
+                              <ul>
+                                {point.subPoints.map((subPoint, k) => (
+                                  <li key={k}>{subPoint}</li>
+                                ))}
+                              </ul>
+                            </>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </main>
+
+          <div className='p-navigation'>
+            <button onClick={() => changeDiv("prev")}>Previous</button>
+            <button onClick={() => changeDiv("next")}>Next</button>
+          </div>
+
+          <div className='comments-part'>
+            <div className='p-comments'>
+              <h3>{comments.length > 0 ? `Comments` : "No comments yet"}</h3>
+              {comments.map((comment) => (
+                <div key={comment.id} className='comment'>
+                  <p>
+                    <strong>{comment.author}</strong>: {comment.text}
+                  </p>
+                  <div className='comment-buttons'>
+                    <button onClick={() => handleDeleteComment(comment.id)}>
+                      Delete
+                    </button>
+                    <button
+                      onClick={() =>
+                        setReply({
+                          parentId: comment.id,
+                          text: "",
+                        })
+                      }
+                    >
+                      Reply
+                    </button>
+                  </div>
+                  {comment.replies.map((reply) => (
+                    <div key={reply.id} className='reply'>
+                      <p>
+                        <strong>{reply.author}</strong>: {reply.text}
+                      </p>
+                      <div className='reply-buttons'>
+                        <button
+                          onClick={() =>
+                            handleDeleteReply(comment.id, reply.id)
+                          }
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {reply.parentId === comment.id && (
+                    <form onSubmit={(e) => handleReplySubmit(comment.id, e)}>
+                      <textarea
+                        placeholder='Your reply'
+                        value={reply.text}
+                        onChange={(e) =>
+                          setReply({ ...reply, text: e.target.value })
+                        }
+                        required
+                      />
+                      <button type='submit'>Add Reply</button>
+                    </form>
+                  )}
+                </div>
+              ))}
+              <form onSubmit={handleCommentSubmit}>
+                <div className='p-comments-inputBoxs'>
+                  <input
+                    type='text'
+                    placeholder='Your name'
+                    value={newComment.author}
+                    onChange={(e) =>
+                      setNewComment({ ...newComment, author: e.target.value })
+                    }
+                    required
+                  />
+                  <input
+                    type='email'
+                    placeholder='Your email'
+                    value={newComment.email}
+                    onChange={(e) =>
+                      setNewComment({ ...newComment, email: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <textarea
+                  placeholder='Your comment'
+                  value={newComment.text}
+                  onChange={(e) =>
+                    setNewComment({ ...newComment, text: e.target.value })
+                  }
+                  required
+                />
+                <button type='submit'>Add Comment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default ParentingStories;
