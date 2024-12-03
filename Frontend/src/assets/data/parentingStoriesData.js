@@ -13,7 +13,6 @@ export const parentingStoriesData = [
       {
         heading: "How to Share Your Story:",
         text: "Click here to share your parenting story in a quick and easy 5-minute process. No hassles – just your authentic narrative.",
-       
       },
       {
         heading: "What Happens Next:",
@@ -150,17 +149,17 @@ export const parentingStoriesData = [
       {
         text: "Explore UpTodd personalised Parenting program",
       },
-    ],
-    Iframe: [
       {
-        src: "https://youtu.be/cDYXoE801GI",
+        video: "https://youtu.be/cDYXoE801GI",
       },
     ],
   },
   {
     id: 5,
-    title: "UpTodd Partners with MOM Influencer Swapnil to Provide a Bright Start for Babies",
-    image: "https://blog.uptodd.com/wp-content/uploads/2023/12/blog-banner-asha-solanki-mom-inluencer-1536x864.png",
+    title:
+      "UpTodd Partners with MOM Influencer Swapnil to Provide a Bright Start for Babies",
+    image:
+      "https://blog.uptodd.com/wp-content/uploads/2023/12/blog-banner-asha-solanki-mom-inluencer-1536x864.png",
     content: [
       {
         text: "Welcoming a newborn into the world is a joyous occasion, yet it signifies the start of a challenging journey for new mothers. UpTodd is proud to announce its partnership with the Instagram MOM Influencer Swapnil, owner of instagram handle coco__and_mommy. Together, we embark on a mission to support and guide new mothers in establishing a solid foundation for their babies’ first three years of life.",
@@ -173,7 +172,8 @@ export const parentingStoriesData = [
         text: "UpTodd’s Unique Approach: At UpTodd, we understand the importance of those critical early years in a child’s development. Our approach is meticulously curated, leveraging insights from 10,000+ research papers and collaborations with experts from MIT, Stanford, IITs, and AIIMS. This ensures a robust, evidence-based foundation for our programs.",
       },
       {
-        heading: "Our program integrates techniques from globally recognized methodologies, including:",
+        heading:
+          "Our program integrates techniques from globally recognized methodologies, including:",
         points: [
           "Early stimulation from Glenn Doman.",
           "Montessori’s emphasis on independence and exploration.",
@@ -184,7 +184,7 @@ export const parentingStoriesData = [
         ],
       },
       {
-        text: "Empowering Babies Worldwide: UpTodd’s holistic approach empowers babies globally to flourish and achieve their full potential through evidence-based guidance. We integrate best practices from diverse educational philosophies, ensuring each child receives a personalized and comprehensive learning experience."
+        text: "Empowering Babies Worldwide: UpTodd’s holistic approach empowers babies globally to flourish and achieve their full potential through evidence-based guidance. We integrate best practices from diverse educational philosophies, ensuring each child receives a personalized and comprehensive learning experience.",
       },
       {
         heading: "Exclusive Offer for Swapnil’s Community",
@@ -198,7 +198,8 @@ export const parentingStoriesData = [
   {
     id: 6,
     title: "Postpartum Depression treatment- Psychological Viewpoint",
-    image: "https://blog.uptodd.com/wp-content/uploads/2023/12/Psychological-Techniques-to-deal-with-Post-Partum-Depression1.png",
+    image:
+      "https://blog.uptodd.com/wp-content/uploads/2023/12/Psychological-Techniques-to-deal-with-Post-Partum-Depression1.png",
     content: [
       {
         text: "Like all other disorders postpartum depression treatment should also be taken care at high priority. In the ICD-10, postpartum depression falls under the category of “Mood [affective] disorders,” specifically termed as “F53.0 Postnatal (postpartum) depression.” It is classified as a type of depression that occurs within six weeks after childbirth.",
@@ -209,9 +210,10 @@ export const parentingStoriesData = [
       {
         text: "Let’s talk about Postpartum Depression treatment techniques from a psychological view point.",
       },
-      
+
       {
-        heading: "Our program integrates techniques from globally recognized methodologies, including:",
+        heading:
+          "Our program integrates techniques from globally recognized methodologies, including:",
         text: "Postpartum depression can be a difficult journey to navigate. There are psychological techniques that can provide important help right from the comfort of your own home. These techniques offer strategies to manage the emotional upheaval and stress associated with postpartum depression. ",
 
         points: [
@@ -225,14 +227,14 @@ export const parentingStoriesData = [
       },
       {
         heading: "Lets’ Know Few More Techniques",
-        
+
         points: [
           "Gratitude Practice: In case of postpartum depression, cultivating a gratitude practice can be a source of hope. Encourage mothers to write down even the simplest things they’re grateful for each day. It can be a supporting gesture, a moment of quiet, it can help them develop a more positive view. This exercise redirects focus away from stressful thoughts and toward recognizing and appreciating positive parts of their life.",
           "Monitoring Negative thoughts: It is essential to monitor and challenge negative thoughts when dealing with postpartum depression. It entails detecting negative self-talk and challenging its veracity. For example, if a mother feels inadequate, she would examine if there is evidence to back that feeling. She’d then reframe it positively, admitting mistakes but not allowing them to define her parenting abilities. This technique interrupts the loop of self-blame. It promotes a more sympathetic image of oneself, which aids in the treatment of postpartum depression.",
         ],
       },
       {
-        text: "Reference from The effectiveness of mindfulness training on reducing the symptoms of postpartum depression"
+        text: "Reference from The effectiveness of mindfulness training on reducing the symptoms of postpartum depression",
       },
       {
         text: "While these psychological techniques are really beneficial in dealing with postpartum depression. Psychological techniques like Progressive Muscle Relaxation, Cognitive Behavioural Therapy, Interpersonal therapy can help. Also Rational Emotive Behavioural Therapy, Rational Emotive Therapy can be really beneficial when conducted by a trained Psychologist.",
@@ -247,7 +249,8 @@ export const parentingStoriesData = [
   },
   {
     id: 7,
-    title: "Celebrate This Christmas with UpTodd’s Free 30-Day Positive Parenting Challenge",
+    title:
+      "Celebrate This Christmas with UpTodd’s Free 30-Day Positive Parenting Challenge",
     image: "https://blog.uptodd.com/wp-content/uploads/2023/12/2-1536x864.png",
     content: [
       {
@@ -268,61 +271,60 @@ export const parentingStoriesData = [
       {
         heading: "Week-by-Week Fun and Learning",
       },
-      
+
       {
         heading: "Week–1: Festive Bonding and Communication",
         points: [
           "Focus: Creating warm, emotional connections through holiday-themed stories and songs.",
-"Preview: Christmas storytelling, carol singing, and more!",
+          "Preview: Christmas storytelling, carol singing, and more!",
         ],
       },
       {
         heading: "Week–2: Sensory Winter Wonderland",
         points: [
           "Focus: Exploring the senses with winter-inspired activities.",
-"Preview: Get ready for sensory snow play, jingle bell music, and more.",
+          "Preview: Get ready for sensory snow play, jingle bell music, and more.",
         ],
       },
       {
         heading: "Week–3: Emotional Warmth",
         points: [
           "Focus: Nurturing emotional growth during the holiday season.",
-"Preview: Activities include crafting gratitude trees, sharing holiday joys, and practicing patience while waiting for Santa.",
+          "Preview: Activities include crafting gratitude trees, sharing holiday joys, and practicing patience while waiting for Santa.",
         ],
       },
       {
         heading: "Week–4: New Year Cognitive and Language Skills",
         points: [
           "Focus: Preparing for the New Year with cognitive and language development.",
-"Preview: Countdown activities, New Year word games, and festive puzzles.",
+          "Preview: Countdown activities, New Year word games, and festive puzzles.",
         ],
       },
       {
         heading: "Week–5: Reflection and Celebration",
         points: [
           "Focus: Reflecting on the month’s activities and celebrating your child’s growth.",
-"Preview: A time to cherish your journey and look forward to a year of continued positive parenting.",
+          "Preview: A time to cherish your journey and look forward to a year of continued positive parenting.",
         ],
       },
       {
         heading: "Why Join Our Christmas Challenge?",
         points: [
           "Create Christmas Magic: Make this festive season extra special with daily bonding activities.",
-"Support Development: Each activity is carefully designed to promote your child’s growth in fun and engaging ways.",
-"Join a Community: Share your experiences and learn from a supportive community of parents.",
-"Expert-Designed Activities: Benefit from tasks crafted by child development experts.",
-"Win Prizes: Celebrate your dedication with certificates and a chance to win an exclusive UpTodd kit!",
+          "Support Development: Each activity is carefully designed to promote your child’s growth in fun and engaging ways.",
+          "Join a Community: Share your experiences and learn from a supportive community of parents.",
+          "Expert-Designed Activities: Benefit from tasks crafted by child development experts.",
+          "Win Prizes: Celebrate your dedication with certificates and a chance to win an exclusive UpTodd kit!",
         ],
         text: "What better way to celebrate Christmas and welcome the new year than by joining our 30-Day Positive Parenting Challenge? This free program is our gift to you, filled with joy, learning, and unforgettable memories. Let’s make this festive season a time of growth, happiness, and positive parenting!",
       },
       {
         heading: "Day Preview – Starting 22nd Dec, 2023",
-        
+
         text: "Day 1 Task Preview: Get ready for “Christmas Story Time” – a cozy storytelling session with your little one. Pick out a festive storybook to start this exciting journey!",
       },
       {
         text: "Want your personalised program? Book Demo",
-        
       },
       {
         video: "https://youtu.be/CNLYum2LT0A?si=AYA7nhPbHSW6dsug",
