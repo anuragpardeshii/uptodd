@@ -1246,18 +1246,17 @@ function ParentingStories() {
       console.error("Error submitting reply:", error);
     }
   };
-
-  const handleDeleteComment = async (id) => {
+  const handleDelete = async (commentId) => {
     const currentStory = parentingStoriesData[currentDiv - 1];
     try {
       await axios.delete(
         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
           currentStory.title
-        )}/${id}`
+        )}/${commentId}`
       );
-      setComments(comments.filter((comment) => comment.id !== id));
+      setComments(comments.filter((comment) => comment._id !== commentId));
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      console.error("Error deleting comment: ", error);
     }
   };
 
@@ -1330,10 +1329,19 @@ function ParentingStories() {
                     </ul>
                   )}
 
-                    {section.video && (
-                    <div className="p-video-container">
-                      <iframe width="760" height="415" src="https://www.youtube.com/embed/CNLYum2LT0A?si=MIHwW8OX17-c_yOE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      <p className="p-video-caption">
+                  {section.video && (
+                    <div className='p-video-container'>
+                      <iframe
+                        width='760'
+                        height='415'
+                        src='https://www.youtube.com/embed/CNLYum2LT0A?si=MIHwW8OX17-c_yOE'
+                        title='YouTube video player'
+                        frameborder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                        referrerpolicy='strict-origin-when-cross-origin'
+                        allowfullscreen
+                      ></iframe>
+                      <p className='p-video-caption'>
                         Explore the video to understand {section.heading}.
                       </p>
                     </div>
@@ -1357,7 +1365,7 @@ function ParentingStories() {
                     <strong>{comment.author}</strong>: {comment.text}
                   </p>
                   <div className='comment-buttons'>
-                    <button onClick={() => handleDeleteComment(comment.id)}>
+                    <button onClick={() => handleDelete(comment._id)}>
                       Delete
                     </button>
                     <button
