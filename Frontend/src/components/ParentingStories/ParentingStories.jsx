@@ -74,52 +74,56 @@ function ParentingStories() {
     }
   };
   const handleReplySubmit = async (commentId, e) => {
-    e.preventDefault();
-    if (!replyAuthor || !replyEmail || !replyText) {
+    e.preventDefault(); // Make sure `e` is the event object
+
+    if (!reply.author || !reply.email || !reply.text) {
       console.error("All fields are required");
       return;
     }
 
     setIsSubmitted(true);
+
     const validateEmail = (email) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
-      return re.test(String(replyEmail).toLowerCase());
+      return re.test(String(email).toLowerCase());
     };
 
-    if (!validateEmail(replyEmail)) {
-      const errorMessage = "Invalid email address"; //Error message
+    if (!validateEmail(reply.email)) {
+      const errorMessage = "Invalid email address"; // Error message
       setErrorMessage(errorMessage);
       console.error(errorMessage);
       setIsSubmitted(false);
       return;
     }
+
     setErrorMessage("");
 
-    //Save details in localStorage if the user checked the box
+    // Save details in localStorage if the user checked the box
     if (replySaveDetails) {
-      localStorage.setItem("replyAuthor", replyAuthor);
-      localStorage.setItem("replyEmail", replyEmail);
+      localStorage.setItem("reply.author", reply.author);
+      localStorage.setItem("reply.email", reply.email);
     }
     if (replySaveDetails) {
       setReply({ ...reply, author: reply.author, email: reply.email });
     }
+
     const currentStory = parentingStoriesData[currentDiv - 1];
-    //if approved, proceed with submitting the reply
+
     try {
-      // Only write this logic if you want to display reply text
       const response = await axios.post(
         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
-          title
+          currentStory.title
         )}/${commentId}/reply`,
         {
-          author: replyAuthor,
-          email: replyEmail,
-          text: replyText,
+          author: reply.author,
+          email: reply.email,
+          text: reply.text,
         }
       );
+
       console.log("Reply added", response.data);
 
-      //Find the comment and add the new reply
+      // Find the comment and add the new reply
       const updatedComments = comments.map((comment) =>
         comment._id === commentId
           ? { ...comment, replies: [...comment.replies, response.data] }
@@ -131,11 +135,11 @@ function ParentingStories() {
       setReply({ commentId: null, text: "", author: "", email: "" });
       setIsSubmitted(false);
       setShowUnapprovedMessage(true);
-      //  navigate("/unapproved");
     } catch (error) {
       console.error("Error submitting reply:", error);
     }
   };
+
   const handleReplyClick = (comment) => {
     setReplyingTo(comment._id);
     setShowUnapprovedMessage(false);
