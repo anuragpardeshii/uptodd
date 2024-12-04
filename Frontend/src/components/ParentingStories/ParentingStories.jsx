@@ -166,32 +166,25 @@ function ParentingStories() {
   };
 
   const handleDeleteReply = async (commentId, replyId) => {
-    // Optimistically update the UI by removing the reply
-    const updatedComments = comments.map((comment) => {
-      if (comment._id === commentId) {
-        return {
-          ...comment,
-          replies: comment.replies.filter((reply) => reply._id !== replyId),
-        };
-      }
-      return comment;
-    });
-    setComments(updatedComments); // Update the state immediately
-
+    const currentStory = parentingStoriesData[currentDiv - 1];
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
-          title
-        )}/${commentId}`
+          currentStory.title
+        )}/${commentId}/reply/${replyId}`
       );
-      if (response.status !== 200) {
-        // If deletion fails, revert the optimistic update
-        setComments(comments); // Revert back to the original state
-        alert("Failed to delete reply");
-      }
+
+      const updatedComments = comments.map((comment) =>
+        comment._id === commentId
+          ? {
+              ...comment,
+              replies: comment.replies.filter((reply) => reply._id !== replyId),
+            }
+          : comment
+      );
+      setComments(updatedComments);
     } catch (error) {
       console.error("Error deleting reply:", error);
-      setComments(comments); // Revert back to the original state
     }
   };
 
@@ -291,20 +284,16 @@ function ParentingStories() {
                       Reply
                     </button>
                   </div>
-                  {comment.replies.map((reply) => (
-                    <div key={reply.id} className='reply'>
+                   {comment.replies.map((reply) => (
+                    <div key={reply._id} className="reply">
                       <p>
                         <strong>{reply.author}</strong>: {reply.text}
                       </p>
-                      <div className='reply-buttons'>
-                        <button
-                          onClick={() =>
-                            handleDeleteReply(comment._id, reply.id)
-                          }
-                        >
-                          Delete
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => handleDeleteReply(comment._id, reply._id)}
+                      >
+                        Delete Reply
+                      </button>
                     </div>
                   ))}
                   {reply.commentId === comment.id && (
@@ -382,3 +371,7 @@ function ParentingStories() {
 }
 
 export default ParentingStories;
+
+
+
+
