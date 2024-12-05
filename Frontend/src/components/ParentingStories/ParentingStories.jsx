@@ -326,7 +326,18 @@ function ParentingStories() {
                         }
                         required
                       />
+                      <div className="">
                       <button type='submit'>Add Reply</button>
+                      <button
+                            type="button"
+                            onClick={() => {
+                              setReplyingTo(null); 
+                              setReply({ commentId: null, text: "", author: "", email: "" }); 
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          </div>
                     </form>
                   )}
                 </div>
