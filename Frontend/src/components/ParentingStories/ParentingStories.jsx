@@ -84,12 +84,12 @@ function ParentingStories() {
     setIsSubmitted(true);
 
     const validateEmail = (email) => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
       return re.test(String(email).toLowerCase());
     };
 
     if (!validateEmail(reply.email)) {
-      const errorMessage = "Invalid email address"; // Error message
+      const errorMessage = "Invalid email address"; 
       setErrorMessage(errorMessage);
       console.error(errorMessage);
       setIsSubmitted(false);
@@ -98,7 +98,7 @@ function ParentingStories() {
 
     setErrorMessage("");
 
-    // Save details in localStorage if the user checked the box
+
     if (replySaveDetails) {
       localStorage.setItem("reply.author", reply.author);
       localStorage.setItem("reply.email", reply.email);
@@ -120,10 +120,11 @@ function ParentingStories() {
           text: reply.text,
         }
       );
+      window.location.reload();
 
       console.log("Reply added", response.data);
 
-      // Find the comment and add the new reply
+   
       const updatedComments = comments.map((comment) =>
         comment._id === commentId
           ? { ...comment, replies: [...comment.replies, response.data] }
@@ -165,29 +166,54 @@ function ParentingStories() {
     }
   };
 
+  // const handleDeleteReply = async (commentId, replyId) => {
+  //   const currentStory = parentingStoriesData[currentDiv - 1];
+  //   try {
+  //     await axios.delete(
+  //       `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
+  //         currentStory.title
+  //       )}/${commentId}/reply/${replyId}`
+  //     );
+
+  //     const updatedComments = comments.map((comment) =>
+  //       comment._id === commentId
+  //         ? {
+  //             ...comment,
+  //             replies: comment.replies.filter((reply) => reply._id !== replyId),
+  //           }
+  //         : comment
+  //     );
+  //     setComments(updatedComments);
+  //   } catch (error) {
+  //     console.error("Error deleting reply:", error);
+  //   }
+  // };
   const handleDeleteReply = async (commentId, replyId) => {
-    const currentStory = parentingStoriesData[currentDiv - 1];
+    const currentStory = parentingStoriesData[currentDiv - 1]; 
     try {
+    
       await axios.delete(
         `https://uptodd.onrender.com/api/comments/${encodeURIComponent(
           currentStory.title
         )}/${commentId}/reply/${replyId}`
       );
-
-      const updatedComments = comments.map((comment) =>
-        comment._id === commentId
-          ? {
-              ...comment,
-              replies: comment.replies.filter((reply) => reply._id !== replyId),
-            }
-          : comment
+  
+    
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment._id === commentId
+            ? {
+                ...comment,
+                replies: comment.replies.filter((reply) => reply._id !== replyId),
+              }
+            : comment
+        )
       );
-      setComments(updatedComments);
-    } catch (error) {
-      console.error("Error deleting reply:", error);
+    } catch {
+  
     }
   };
-
+  
   return (
     <div className='p-container'>
       {parentingStoriesData.map((story, index) => (
