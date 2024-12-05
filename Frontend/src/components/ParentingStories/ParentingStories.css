@@ -13,14 +13,12 @@
   text-align: center;
 }
 
-
 .p-video-caption {
   margin-top: 10px;
   font-size: 1rem;
   color: #555;
   text-align: center;
 }
-
 
 .p-logo {
   width: 128px;
@@ -190,6 +188,11 @@
 
 .p-comments textarea {
   height: 150px;
+}
+
+.comment-buttons {
+  display: flex;
+  gap: 20px; /* Adjust the gap between buttons */
 }
 
 .p-comments button {
