@@ -207,6 +207,22 @@
 .p-comments button:hover {
   background-color: #db2777;
 }
+.rpl {
+  display: inline-block;
+}
+
+.rpl button {
+  background-color: #fb2056;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.rpl button:first-child {
+  margin-right: 10px; /* Adds space between buttons */
+}
 
 /*                            Media Queries for responsiveness ( 1024px )*/
 @media (max-width: 1024px) {

@@ -284,13 +284,15 @@ function ParentingStories() {
                       Reply
                     </button>
                   </div>
-                   {comment.replies.map((reply) => (
-                    <div key={reply._id} className="reply">
+                  {comment.replies.map((reply) => (
+                    <div key={reply._id} className='reply'>
                       <p>
                         <strong>{reply.author}</strong>: {reply.text}
                       </p>
                       <button
-                        onClick={() => handleDeleteReply(comment._id, reply._id)}
+                        onClick={() =>
+                          handleDeleteReply(comment._id, reply._id)
+                        }
                       >
                         Delete Reply
                       </button>
@@ -326,18 +328,23 @@ function ParentingStories() {
                         }
                         required
                       />
-                      <div className="">
-                      <button type='submit'>Add Reply</button>
-                      <button
-                            type="button"
-                            onClick={() => {
-                              setReplyingTo(null); 
-                              setReply({ commentId: null, text: "", author: "", email: "" }); 
-                            }}
-                          >
-                            Cancel
-                          </button>
-                          </div>
+                      <div className='rpl'>
+                        <button type='submit'>Add Reply</button>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            setReplyingTo(null);
+                            setReply({
+                              commentId: null,
+                              text: "",
+                              author: "",
+                              email: "",
+                            });
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
                     </form>
                   )}
                 </div>
@@ -382,7 +389,3 @@ function ParentingStories() {
 }
 
 export default ParentingStories;
-
-
-
-
